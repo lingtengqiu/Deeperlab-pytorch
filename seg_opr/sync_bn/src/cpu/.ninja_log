@@ -1,0 +1,7 @@
+# ninja log v5
+0	3739	0	syncbn_cpu.o	96fb2c66c017ebb3
+0	6011	0	operator.o	4164cb72508125a1
+6011	6188	0	syncbn_cpu.so	7b7138baea8e4fe0
+1	4809	0	syncbn_cpu.o	f2d5846ef1049bbe
+1	6948	0	operator.o	6bd584810d156cc0
+6948	7235	0	syncbn_cpu.so	7b7138baea8e4fe0
