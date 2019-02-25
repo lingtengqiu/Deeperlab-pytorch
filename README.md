@@ -90,5 +90,6 @@ In the evaluator, we have implemented the multi-gpu inference base on the multi-
 if you are interested my algorithm, you can see my realized segmentation tool(dfn,deeperlab,deeplabv3 plus and so on):  
 - [segmentation-torch](https://github.com/lingtengqiu/segmentation-torch) 
 
-
+## Be Care for
+because my device is 1080, we can't use 7*7 conv in two 4096 channel due to out of memory. so if you use it. you can change it in model/deeperlab.py  
 
