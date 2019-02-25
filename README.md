@@ -4,7 +4,6 @@ This project aims at providing a fast, modular reference implementation for sema
 ![demo image](demo/human.png)
 
 ## Highlights
-- **Modular Design:** Segmentation Algorithm such as dfn,deeperlab,deeplabv3 and soon on.
 - **Distributed Training:** **>60%** Thank you ycszen, from his struct faster than the multi-thread parallel method([nn.DataParallel](https://pytorch.org/docs/stable/nn.html#dataparallel)), we use the multi-processing parallel method.
 - **Multi-GPU training and inference:** support different manners of inference.
 - Provides pre-trained models and implement different semantic segmentation models.
