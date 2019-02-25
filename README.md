@@ -22,8 +22,8 @@ This project aims at providing a fast, modular reference implementation for sema
 
 ## Model Zoo
 ### Supported Model
-- [deeperlab](https://arxiv.org/abs/1902.05093)(CVPR2019)
-![deeperlab image](demo/deeperlab.png)
+- [deeperlab](https://arxiv.org/abs/1902.05093)(CVPR2019)    
+![deeperlab image](deeperlab.png)
 
 
 ### Performance and Benchmarks
