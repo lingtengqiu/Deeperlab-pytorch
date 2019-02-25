@@ -17,18 +17,17 @@ This project aims at providing a fast, modular reference implementation for sema
 - Ninja
   - `sudo apt-get install ninja-build`
 - tqdm
-  - `pip3 install tqdm`
+  - `pip3 install tqdm`  
+  
+## Pretrain Model  
+- [xception-71](https://www.dropbox.com/s/1hplpzet9d7dv29/xception-c0a72b38.pth.tar?dl=1)(pretrain)
 
 ## Model Zoo
 ### Supported Model
 - [deeperlab](https://arxiv.org/abs/1902.05093)(CVPR2019)    
 ![deeperlab image](deeperlab.png)  
-## Pretrain Model  
-- [xception-71](https://www.dropbox.com/s/1hplpzet9d7dv29/xception-c0a72b38.pth.tar?dl=1)(pretrain)
-
-
 ### Performance and Benchmarks
-SS:Single Scale MSF:Multi-scale + Flip
+SS:Single Scale MSF:Multi-scale + Flip  
 
 ### PASCAL VOC 2012(SBD and Never SBD)
 because I only realize the segmentation part,I tested its results on voc
