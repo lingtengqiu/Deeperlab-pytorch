@@ -2,8 +2,8 @@ ninja_required_version = 1.3
 cxx = c++
 nvcc = /usr/local/cuda/bin/nvcc
 
-cflags = -DTORCH_EXTENSION_NAME=syncbn_gpu -DTORCH_API_INCLUDE_EXTENSION_H -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/torch/csrc/api/include -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/TH -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/THC -isystem /usr/local/cuda/include -isystem /home/qlt/myproject/py_35_torch_1.0/include/python3.5m -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++11
-cuda_flags = -DTORCH_EXTENSION_NAME=syncbn_gpu -DTORCH_API_INCLUDE_EXTENSION_H -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/torch/csrc/api/include -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/TH -isystem /home/qlt/myproject/py_35_torch_1.0/lib/python3.5/site-packages/torch/lib/include/THC -isystem /usr/local/cuda/include -isystem /home/qlt/myproject/py_35_torch_1.0/include/python3.5m -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --compiler-options '-fPIC' -std=c++11
+cflags = -DTORCH_EXTENSION_NAME=syncbn_gpu -DTORCH_API_INCLUDE_EXTENSION_H -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/torch/csrc/api/include -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/TH -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/THC -isystem /usr/local/cuda/include -isystem /usr/include/python3.5m -D_GLIBCXX_USE_CXX11_ABI=0 -fPIC -std=c++11
+cuda_flags = -DTORCH_EXTENSION_NAME=syncbn_gpu -DTORCH_API_INCLUDE_EXTENSION_H -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/torch/csrc/api/include -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/TH -isystem /home/qlt/.local/lib/python3.5/site-packages/torch/lib/include/THC -isystem /usr/local/cuda/include -isystem /usr/include/python3.5m -D_GLIBCXX_USE_CXX11_ABI=0 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --compiler-options '-fPIC' -std=c++11
 ldflags = -shared -L/usr/local/cuda/lib64 -lcudart
 
 rule compile
@@ -17,8 +17,8 @@ rule cuda_compile
 rule link
   command = $cxx $in $ldflags -o $out
 
-build operator.o: compile /home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v2/seg_opr/sync_bn/src/gpu/operator.cpp
-build syncbn_kernel.cuda.o: cuda_compile /home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v2/seg_opr/sync_bn/src/gpu/syncbn_kernel.cu
+build operator.o: compile /home/qlt/seg/segmentation/seg_opr/sync_bn/src/gpu/operator.cpp
+build syncbn_kernel.cuda.o: cuda_compile /home/qlt/seg/segmentation/seg_opr/sync_bn/src/gpu/syncbn_kernel.cu
 
 build syncbn_gpu.so: link operator.o syncbn_kernel.cuda.o
 

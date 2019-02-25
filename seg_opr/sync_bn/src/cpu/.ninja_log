@@ -5,3 +5,9 @@
 1	4809	0	syncbn_cpu.o	f2d5846ef1049bbe
 1	6948	0	operator.o	6bd584810d156cc0
 6948	7235	0	syncbn_cpu.so	7b7138baea8e4fe0
+0	4948	0	syncbn_cpu.o	38e7c27dff91a763
+0	7263	0	operator.o	74eb382e8d7785da
+7263	7623	0	syncbn_cpu.so	7b7138baea8e4fe0
+0	4168	0	syncbn_cpu.o	f2b8226a378d070a
+0	6414	0	operator.o	32c3821155596763
+6414	6630	0	syncbn_cpu.so	7b7138baea8e4fe0

@@ -39,10 +39,15 @@ C.val_log_file = C.log_dir + '/val_' + exp_time + '.log'
 C.link_val_log_file = C.log_dir + '/val_last.log'
 
 """Data Dir and Weight Dir"""
-C.img_root_folder = "/home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v1/data/JPEGImages"
-C.gt_root_folder = "/home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v1/data/SegmentationLabel"
-C.train_source = "/home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v1/data/ImageSets/Segmentation/train.txt"
-C.eval_source = "/home/qlt/qiulingteng/seg/TorchSeg-master/model/dfn_v1/data/ImageSets/Segmentation/val.txt"
+img_root =osp.abspath("./data/JPEGImages/")
+gt_root = osp.abspath("./data/SegmentationLabel/")
+train_root = osp.abspath("./data/ImageSets/Segmentation/train.txt")
+eval_root = osp.abspath("./data/ImageSets/Segmentation/val.txt")
+"""Data Dir and Weight Dir"""
+C.img_root_folder = img_root
+C.gt_root_folder = gt_root
+C.train_source = train_root
+C.eval_source = eval_root
 # C.test_source = "/unsullied/sharefs/yuchangqian/Storage/Datasets/VOC2012_AUG/config/voc12_test.txt"
 C.is_test = False
 
@@ -74,15 +79,15 @@ C.fix_bn = False
 C.sync_bn = True
 C.bn_eps = 1e-5
 C.bn_momentum = 0.1
-C.pretrained_model = "./pretrain/resnet101_torch.pth"
+C.pretrained_model = "./pretrain/xception-71.pth"
 C.aux_loss_alpha = 0.1
 
 """Train Config"""
-C.lr = 1e-4
+C.lr = 1e-3
 C.lr_power = 0.9
 C.momentum = 0.9
 C.weight_decay = 1e-5
-C.batch_size = 3 #4 * C.num_gpu
+C.batch_size = 4 #4 * C.num_gpu
 C.nepochs = 120
 C.niters_per_epoch = int(math.ceil(C.num_train_imgs * 1.0 // C.batch_size))
 C.num_workers = 1

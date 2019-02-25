@@ -1,1 +1,1 @@
-python eval.py -c ./result/metric.csv -e 110-119
+python3 eval.py -c ./result/metric.csv -e 100-110

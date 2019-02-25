@@ -90,3 +90,23 @@ class ProbOhemCrossEntropy2d(nn.Module):
         target = target.view(b, h, w)
 
         return self.criterion(pred, target)
+class BootstrappedCrossEntropy(nn.Module):
+    def __init__(self,K =0.15,criterion = None):
+        super(BootstrappedCrossEntropy,self).__init__()
+        assert criterion!= None,"you must give a criterion function"
+        self.criterion = criterion
+        self.K = K
+    def forward(self, pred,target):
+        B,C,H,W = pred.shape
+        num = int(self.K * B*H*W)
+        loss = self.criterion(pred,target)
+        # return loss
+        loss = loss.view(-1)
+        tk = torch.argsort(loss,descending=True)
+        TK = (loss[tk[num-1]])
+        loss = loss[loss>=TK]
+
+        #get top-k loss
+        return loss.mean()
+
+

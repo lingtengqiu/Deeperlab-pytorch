@@ -12,12 +12,12 @@ import torch.backends.cudnn as cudnn
 
 from config import config
 from dataloader import get_train_loader
-from dfn import DFN
+from model.deeperlab import  deeperlab
 from datasets import VOC
 from utils.init_func import init_weight, group_weight
 from engine.lr_policy import PolyLR
 from engine.engine import Engine
-from seg_opr.loss_opr import SigmoidFocalLoss
+from seg_opr.loss_opr import BootstrappedCrossEntropy
 from seg_opr.sync_bn import DataParallelModel, Reduce, BatchNorm2d
 from utils import board
 import os.path as osp
@@ -68,19 +68,20 @@ with Engine(custom_parser=parser) as engine:
 
 
     # config network and criterion
-    criterion = nn.CrossEntropyLoss(reduction='mean',
+    criterion = nn.CrossEntropyLoss(reduction='none',
                                     ignore_index=255)
-    aux_criterion = SigmoidFocalLoss(ignore_label=255, gamma=2.0, alpha=0.25)
+    criterion = BootstrappedCrossEntropy(K = 0.15,criterion=criterion)
     if engine.distributed:
         BatchNorm2d = SyncBatchNorm
     else:
         BatchNorm2d= nn.BatchNorm2d
 
     pretrained_model = osp.abspath(config.pretrained_model)
-    model = DFN(config.num_classes, criterion=criterion,
-                aux_criterion=aux_criterion, alpha=config.aux_loss_alpha,
-                pretrained_model=pretrained_model,
-                norm_layer=BatchNorm2d)
+    model = deeperlab(3,config.num_classes,criterion,None,None,pretrained_model,BatchNorm2d)
+    # model = DFN(config.num_classes, criterion=criterion,
+    #             aux_criterion=aux_criterion, alpha=config.aux_loss_alpha,
+    #             pretrained_model=pretrained_model,
+    #             norm_layer=BatchNorm2d)
     init_weight(model.business_layer, nn.init.kaiming_normal_,
                 BatchNorm2d, config.bn_eps, config.bn_momentum,
                 mode='fan_in', nonlinearity='relu')
@@ -91,10 +92,10 @@ with Engine(custom_parser=parser) as engine:
         base_lr = config.lr * engine.world_size
     params_list = []
 
-    #here we must know backbone means resnet-101
+    #backbone para lr
     params_list = group_weight(params_list, model.backbone,
                                BatchNorm2d, base_lr)
-    #business means the smooth net ,and border net
+    #lr for business part
     for module in model.business_layer:
         params_list = group_weight(params_list, module, BatchNorm2d,
                                    base_lr * 10)
@@ -139,13 +140,13 @@ with Engine(custom_parser=parser) as engine:
             minibatch = dataloader.next()
             imgs = minibatch['data']
             gts = minibatch['label']
-            cgts = minibatch['aux_label']
+            # cgts = minibatch['aux_label']
 
             imgs = imgs.cuda(non_blocking=True)
             gts = gts.cuda(non_blocking=True)
-            cgts = cgts.cuda(non_blocking=True)
+            # cgts = cgts.cuda(non_blocking=True)
 
-            loss = model(imgs, gts, cgts)
+            loss = model(imgs, gts, None)
             # reduce the whole loss over multi-gpu
             if engine.distributed:
                 dist.all_reduce(loss, dist.ReduceOp.SUM)

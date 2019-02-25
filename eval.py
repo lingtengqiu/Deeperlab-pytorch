@@ -15,7 +15,7 @@ from engine.evaluator import Evaluator
 from engine.logger import get_logger
 from seg_opr.metric import hist_info, compute_score
 from datasets.voc import VOC
-from dfn import DFN
+from model.deeperlab import deeperlab
 
 logger = get_logger()
 
@@ -87,8 +87,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
     all_dev = parse_devices(args.devices)
     mp_ctx = mp.get_context('spawn')
-    network = DFN(config.num_classes, criterion=None, aux_criterion=None,
-                  alpha=config.aux_loss_alpha)
+    #network = DFN(config.num_classes, criterion=None, aux_criterion=None,
+    #              alpha=config.aux_loss_alpha)
+    network = deeperlab(3, config.num_classes, None, None,None)
     data_setting = {'img_root': config.img_root_folder,
                     'gt_root': config.gt_root_folder,
                     'train_source': config.train_source,
