@@ -38,8 +38,8 @@ Methods | Backbone | TrainSet | EvalSet | Mean IoU(SS) | Mean IoU(MSF) | Model
  deeperlab(ours)   | R101_v1c | *train_aug*  | *val*  | 73.28 | 74.11 | BaiduYun / GoogleDrive 
  
 ### To Do
-  - [ ] Detection part
-##Link
+  - [ ] Detection part  
+## Link
 we must build the env for training 
 ```bash
 make link
