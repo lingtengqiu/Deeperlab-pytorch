@@ -31,8 +31,7 @@ SS:Single Scale MSF:Multi-scale + Flip
 
 ### PASCAL VOC 2012(SBD and Never SBD)
 because I only realize the segmentation part,I tested its results on voc
-
-Dataset | Total | IoU>0.3 | IoU>0.5 | IoU>0.75 | Average  
+Method | Backbone | TrainSet| EvalSet | Mean IoU(ss) | Mean IoU(msf) 
 :--:|:--:|:--:|:--:|:--:|:--:
  deeperlab(ours+SBD)  | R101_v1c | *train_aug*  | *val*  | 79.71 | 80.26 
  deeperlab(ours)   | R101_v1c | *train_aug*  | *val*  | 73.28 | 74.11 
