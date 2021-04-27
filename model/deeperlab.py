@@ -3,7 +3,7 @@
 
 # **********************************************************
 # * Author        : lingteng qiu
-# * Email         : 1259738366@qq.com
+# * Email         : 
 # * Create time   : 2019-02-25 18:50
 # * Last modified : 2019-02-25 18:50
 # * Filename      : deeperlab.py
