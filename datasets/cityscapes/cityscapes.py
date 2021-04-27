@@ -2,7 +2,7 @@
 # encoding: utf-8
 # @Time    : 2017/12/16 下午8:41
 # @Author  : LingtengQIu
-# @Contact : 1259738366@qq.com
+# @Contact : 
 # @File    : voc.py
 import numpy as np
 
