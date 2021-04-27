@@ -2,7 +2,7 @@
 # encoding: utf-8
 # @Time    : 2019/2/16 上午12:43
 # @Author  : lingtengQIu
-# @Contact : 1259738366@qq.com
+# @Contact : 
 # @File    : seg_oprs.py
 from collections import OrderedDict
 import numpy as np
