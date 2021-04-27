@@ -2,7 +2,7 @@
 # encoding: utf-8
 # @Time    : 2018/12/16 下午8:41
 # @Author  : 
-# @Contact : 1259738366@qq.com
+# @Contact : 
 # @File    : voc.py
 
 from datasets.BaseDataset import BaseDataset
